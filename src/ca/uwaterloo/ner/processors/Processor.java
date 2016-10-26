@@ -1,10 +1,8 @@
 package ca.uwaterloo.ner.processors;
 
-/**
- * Created by v2john on 25/10/16.
- */
-public abstract class Processor {
+import ca.uwaterloo.ner.utils.Options;
 
-    protected abstract void process();
-
+public abstract class Processor
+{
+    public abstract void process();
 }
