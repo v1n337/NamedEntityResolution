@@ -5,4 +5,8 @@ package ca.uwaterloo.ner.utils;
  */
 public class Options {
 
+    public Options(String[] args)
+    {
+
+    }
 }
