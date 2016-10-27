@@ -64,5 +64,7 @@ public class Options
                     "CmdLineException while reading options", e
             );
         }
+
+        logger.info("Options successfully read");
     }
 }

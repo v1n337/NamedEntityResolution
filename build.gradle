@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
+	compile group: 'args4j', name: 'args4j', version: '2.33'
+	compile group: 'args4j', name: 'args4j-site', version: '2.33'
+}
