@@ -1,6 +1,4 @@
-package ca.uwaterloo.ner.processors;
-
-import ca.uwaterloo.ner.utils.Options;
+package main.java.ner.processors;
 
 public abstract class Processor
 {

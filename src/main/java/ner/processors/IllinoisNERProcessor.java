@@ -1,4 +1,4 @@
-package ca.uwaterloo.ner.processors;
+package main.java.ner.processors;
 
 
 import org.apache.logging.log4j.LogManager;

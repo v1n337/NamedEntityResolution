@@ -1,9 +1,17 @@
-# Define the root logger with appender X
-log4j.rootLogger = DEBUG, INFO, ERROR
-
-# Set the appender named X to be a File appender
-log4j.appender.X=org.apache.log4j.ConsoleAppender
-
-# Define the layout for X appender
-log4j.appender.X.layout=org.apache.log4j.PatternLayout
-log4j.appender.X.layout.conversionPattern=%m%n
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration package="log4j.test"
+               status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="log4j.test.Log4jTest" level="trace">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="trace">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

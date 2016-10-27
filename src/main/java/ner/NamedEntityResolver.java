@@ -1,10 +1,10 @@
-package ca.uwaterloo.ner;
+package main.java.ner;
 
 
-import ca.uwaterloo.ner.exceptions.InvalidConfigurationError;
-import ca.uwaterloo.ner.processors.IllinoisNERProcessor;
-import ca.uwaterloo.ner.processors.Processor;
-import ca.uwaterloo.ner.utils.Options;
+import main.java.ner.exceptions.InvalidConfigurationError;
+import main.java.ner.processors.IllinoisNERProcessor;
+import main.java.ner.processors.Processor;
+import main.java.ner.utils.Options;
 
 public class NamedEntityResolver
 {

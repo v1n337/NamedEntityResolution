@@ -1,7 +1,7 @@
-package ca.uwaterloo.ner.utils;
+package main.java.ner.utils;
 
-import ca.uwaterloo.ner.exceptions.InternalAppException;
-import ca.uwaterloo.ner.exceptions.InvalidConfigurationError;
+import main.java.ner.exceptions.InternalAppException;
+import main.java.ner.exceptions.InvalidConfigurationError;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kohsuke.args4j.CmdLineException;
