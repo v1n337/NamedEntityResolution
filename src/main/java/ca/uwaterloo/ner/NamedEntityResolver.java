@@ -1,7 +1,6 @@
 package ca.uwaterloo.ner;
 
 
-import ca.uwaterloo.ner.exceptions.InvalidConfigurationError;
 import ca.uwaterloo.ner.processors.IllinoisNERProcessor;
 import ca.uwaterloo.ner.processors.Processor;
 import ca.uwaterloo.ner.utils.Options;

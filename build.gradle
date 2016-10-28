@@ -3,6 +3,9 @@ apply plugin: 'application'
 
 repositories {
     mavenCentral()
+    maven {
+        url "http://cogcomp.cs.illinois.edu/m2repo"
+    }
 }
 
 dependencies {
@@ -13,6 +16,11 @@ dependencies {
     compile 'dom4j:dom4j:1.5.2'
     compile 'org.slf4j:slf4j-api:1.7.12'
     compile 'org.projectlombok:lombok:1.16.10'
+    compile 'org.apache.commons:commons-lang3:3.5'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.6.3'
+    compile 'org.codehaus.woodstox:woodstox-core-asl:4.4.1'
+    compile 'edu.illinois.cs.cogcomp:illinois-ner:3.0.79'
+    testCompile 'junit:junit:4.12'
 }
 
 mainClassName = "ca.uwaterloo.ner.NamedEntityResolver"
@@ -20,7 +28,6 @@ mainClassName = "ca.uwaterloo.ner.NamedEntityResolver"
 task createStartScripts(type: CreateStartScripts) {
     mainClassName = "ca.uwaterloo.ner.NamedEntityResolver"
     applicationName = 'NamedEntityResolver'
-    classpath = files('path/to/some.jar')
 }
 
 task copyDepLib(type: Copy) {
@@ -34,4 +41,3 @@ task copyAppLib(type: Copy) {
 }
 
 build.dependsOn([copyDepLib, copyAppLib])
-

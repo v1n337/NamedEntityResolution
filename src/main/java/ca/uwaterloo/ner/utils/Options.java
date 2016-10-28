@@ -2,7 +2,6 @@ package ca.uwaterloo.ner.utils;
 
 import ca.uwaterloo.ner.exceptions.InternalAppException;
 import ca.uwaterloo.ner.exceptions.InvalidConfigurationError;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.ToString;
 import org.apache.logging.log4j.LogManager;
