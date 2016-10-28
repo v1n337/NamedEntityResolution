@@ -1,4 +1,4 @@
-package main.java.ner.exceptions;
+package ca.uwaterloo.ner.exceptions;
 
 public class InternalAppException extends Exception
 {

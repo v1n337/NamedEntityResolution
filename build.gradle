@@ -2,24 +2,25 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compile 'org.apache.logging.log4j:log4j-api:2.7'
-	compile 'org.apache.logging.log4j:log4j-core:2.7'
-	compile 'args4j:args4j:2.33'
-	compile 'jaxen:jaxen:1.1.6'
-	compile 'dom4j:dom4j:1.5.2'
-	compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'org.apache.logging.log4j:log4j-api:2.7'
+    compile 'org.apache.logging.log4j:log4j-core:2.7'
+    compile 'args4j:args4j:2.33'
+    compile 'jaxen:jaxen:1.1.6'
+    compile 'dom4j:dom4j:1.5.2'
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'org.projectlombok:lombok:1.16.10'
 }
 
-mainClassName = "main.java.ner.NamedEntityResolver"
+mainClassName = "ca.uwaterloo.ner.NamedEntityResolver"
 
 task createStartScripts(type: CreateStartScripts) {
-	mainClassName = "main.java.ner.NamedEntityResolver"
-	applicationName = 'NamedEntityResolver'
-	classpath = files('path/to/some.jar')
+    mainClassName = "ca.uwaterloo.ner.NamedEntityResolver"
+    applicationName = 'NamedEntityResolver'
+    classpath = files('path/to/some.jar')
 }
 
 task copyDepLib(type: Copy) {

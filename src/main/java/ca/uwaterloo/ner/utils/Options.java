@@ -1,7 +1,10 @@
-package main.java.ner.utils;
+package ca.uwaterloo.ner.utils;
 
-import main.java.ner.exceptions.InternalAppException;
-import main.java.ner.exceptions.InvalidConfigurationError;
+import ca.uwaterloo.ner.exceptions.InternalAppException;
+import ca.uwaterloo.ner.exceptions.InvalidConfigurationError;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.ToString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kohsuke.args4j.CmdLineException;
@@ -11,6 +14,9 @@ import org.kohsuke.args4j.Option;
 /**
  * This class reads and processes the command line arguments
  */
+
+@ToString
+@Getter
 public class Options
 {
     private static Options instance = null;
@@ -20,13 +26,13 @@ public class Options
     private Boolean help = false;
 
     @Option(name = "-xmlFilePath", usage = "XML File Path", metaVar = "XML_FILE_PATH",
-        required = true)
+            required = true)
     private String xmlFilePath;
 
     public static void initializeInstance(String[] args)
         throws InvalidConfigurationError
     {
-        if(null == instance)
+        if (null == instance)
         {
             instance = new Options(args);
         }
@@ -35,7 +41,7 @@ public class Options
     public static Options getInstance()
         throws InternalAppException
     {
-        if(null == instance)
+        if (null == instance)
         {
             throw new InternalAppException("Tried accessing options without initializing it first.");
         }
@@ -47,7 +53,7 @@ public class Options
     {
         CmdLineParser parser = new CmdLineParser(this);
 
-        if(help)
+        if (help)
         {
             parser.printUsage(System.out);
             System.exit(0);
@@ -61,7 +67,7 @@ public class Options
         {
             logger.error("CmdLineException while reading options", e);
             throw new InvalidConfigurationError(
-                    "CmdLineException while reading options", e
+                "CmdLineException while reading options", e
             );
         }
 
