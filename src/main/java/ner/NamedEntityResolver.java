@@ -1,10 +1,10 @@
 package main.java.ner;
 
 
-import main.java.ner.exceptions.InvalidConfigurationError;
 import main.java.ner.processors.IllinoisNERProcessor;
-import main.java.ner.processors.Processor;
 import main.java.ner.utils.Options;
+import main.java.ner.exceptions.InvalidConfigurationError;
+import main.java.ner.processors.Processor;
 
 public class NamedEntityResolver
 {
