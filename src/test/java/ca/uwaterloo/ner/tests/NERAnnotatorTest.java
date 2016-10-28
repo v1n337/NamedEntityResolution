@@ -1,11 +1,17 @@
 package ca.uwaterloo.ner.tests;
 
 import ca.uwaterloo.ner.utils.IllinoisNERHelper;
+import edu.illinois.cs.cogcomp.annotation.TextAnnotationBuilder;
 import edu.illinois.cs.cogcomp.core.datastructures.ViewNames;
+import edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation;
+import edu.illinois.cs.cogcomp.core.utilities.configuration.ResourceManager;
 import edu.illinois.cs.cogcomp.ner.NERAnnotator;
+import edu.illinois.cs.cogcomp.nlp.tokenizer.IllinoisTokenizer;
+import edu.illinois.cs.cogcomp.nlp.utility.TokenizerTextAnnotationBuilder;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Properties;
 
 public class NERAnnotatorTest
 {
@@ -17,7 +23,9 @@ public class NERAnnotatorTest
         String text = "Mr. Bean is the best comedian ever. He works for NBC. ";
         String corpus = "corpus-1";
         String textId = "1";
+
         NERAnnotator nerAnnotator = new NERAnnotator(ViewNames.NER_CONLL);
+        nerAnnotator.doInitialize();
 
         IllinoisNERHelper.tagDocument(text, corpus, textId, nerAnnotator);
     }

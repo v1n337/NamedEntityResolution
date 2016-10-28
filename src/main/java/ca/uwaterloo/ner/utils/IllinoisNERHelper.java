@@ -23,8 +23,8 @@ public class IllinoisNERHelper
         TextAnnotation textAnnotation = annotationBuilder.createTextAnnotation(corpus, textId, text);
 
         annotator.addView(textAnnotation);
-
         View taggedText = textAnnotation.getView(ViewNames.NER_CONLL);
+
         List<Constituent> constituents = taggedText.getConstituents();
         for (Constituent constituent : constituents)
         {

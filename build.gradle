@@ -19,7 +19,8 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.6.3'
     compile 'org.codehaus.woodstox:woodstox-core-asl:4.4.1'
-    compile 'edu.illinois.cs.cogcomp:illinois-ner:3.0.79'
+    compile 'edu.illinois.cs.cogcomp:illinois-ner:3.0.70-SNAPSHOT'
+    compile 'commons-io:commons-io:2.5'
     testCompile 'junit:junit:4.12'
 }
 

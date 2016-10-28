@@ -3,9 +3,6 @@ package ca.uwaterloo.ner.tests;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.junit.Test;
 
-/**
- * Created by v2john on 28/10/16.
- */
 public class HTMLDecoderTest
 {
     @Test

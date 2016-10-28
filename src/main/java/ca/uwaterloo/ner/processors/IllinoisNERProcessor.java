@@ -4,6 +4,7 @@ package ca.uwaterloo.ner.processors;
 import ca.uwaterloo.ner.utils.IllinoisNERHelper;
 import ca.uwaterloo.ner.utils.Options;
 import edu.illinois.cs.cogcomp.core.datastructures.ViewNames;
+import edu.illinois.cs.cogcomp.core.utilities.configuration.ResourceManager;
 import edu.illinois.cs.cogcomp.ner.NERAnnotator;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +17,7 @@ import org.dom4j.tree.DefaultElement;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 public class IllinoisNERProcessor extends Processor
 {
@@ -42,6 +44,7 @@ public class IllinoisNERProcessor extends Processor
         String docText = null;
 
         NERAnnotator nerAnnotator = new NERAnnotator(ViewNames.NER_CONLL);
+        nerAnnotator.doInitialize();
 
         for (Object object : list)
         {
