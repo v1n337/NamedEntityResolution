@@ -1,66 +1,91 @@
 package ca.uwaterloo.ner.processors;
 
 
+import ca.uwaterloo.ner.bean.Annotation;
+import ca.uwaterloo.ner.bean.Article;
 import ca.uwaterloo.ner.utils.IllinoisNERHelper;
 import ca.uwaterloo.ner.utils.Options;
+import ca.uwaterloo.ner.utils.XMLHelper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.illinois.cs.cogcomp.core.datastructures.ViewNames;
 import edu.illinois.cs.cogcomp.ner.NERAnnotator;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.io.SAXReader;
-import org.dom4j.tree.DefaultElement;
 
 import java.io.File;
-import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 public class IllinoisNERProcessor extends Processor
 {
     private static Logger logger = LogManager.getLogger(IllinoisNERProcessor.class);
+    private static ObjectMapper mapper = new ObjectMapper();
 
     public void process()
         throws Exception
     {
-        logger.info("Execution begun");
+        logger.info("IllinoisNERProcessor Execution begun");
 
-        SAXReader saxReader = new SAXReader();
-        Document document = saxReader.read(new File(Options.getInstance().getXmlFilePath()));
+        List<Article> articles = XMLHelper.getObjects(Options.getInstance().getXmlFilePath());
+        logger.info("There are a total of " + articles.size() + " articles to annotate");
 
-        findLinks(document);
+        List<Article> annotatedArticles = annotateArticles(articles);
+
+        String articlesJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(annotatedArticles);
+
+        FileUtils.writeStringToFile(new File(Options.getInstance().getOutputFilePath()), articlesJson,
+                                    Charset.defaultCharset());
+
+        logger.info("IllinoisNERProcessor Execution complete");
     }
 
-    public void findLinks(Document document)
-        throws DocumentException, IOException
+    private List<Article> annotateArticles(List<Article> articles)
+        throws Exception
     {
-        logger.info("Executing findLinks");
-        List list = document.selectNodes("//value");
+        logger.info("Executing annotateArticles");
+
         Integer counter = 0;
-        Integer docId = null;
-        String docText = null;
+        Integer docId;
+        String articleText;
 
         NERAnnotator nerAnnotator = new NERAnnotator(ViewNames.NER_CONLL);
         nerAnnotator.doInitialize();
 
-        for (Object object : list)
+        Article annotatedArticle;
+        List<Annotation> annotations;
+        List<Article> annotatedArticles = new ArrayList<>();
+
+        for (Article article: articles)
         {
             try
             {
-                DefaultElement element = (DefaultElement) object;
                 docId = counter++;
-                docText = StringEscapeUtils.unescapeXml(StringEscapeUtils.unescapeXml(element.getText()));
-                IllinoisNERHelper.tagDocument(docText, "corpus-1", docId.toString(), nerAnnotator);
-                logger.debug(docText);
+                logger.info("Working on article " + docId + ", articleID: " + article.getArticleid());
+
+                articleText = StringEscapeUtils.unescapeXml(StringEscapeUtils.unescapeXml(article.getValue()));
+                annotations = IllinoisNERHelper.tagDocument(articleText, "corpus-1", docId.toString(), nerAnnotator);
+
+                if(null != annotations && annotations.size() > 0)
+                {
+                    annotatedArticle =
+                        new Article(articleText, article.getTitle(), article.getComment(), article.getUserid(),
+                                    article.getArticleid(), article.getVersion(), article.getDate(), annotations);
+                    annotatedArticles.add(annotatedArticle);
+                }
             }
             catch (Exception e)
             {
-                logger.error("skipping element " + object);
+                logger.error("Skipping article " + article.getArticleid());
                 logger.error(e);
             }
         }
 
-        logger.info("Finished findLinks");
+        logger.info(annotatedArticles);
+        logger.info("Finished annotateArticles");
+
+        return annotatedArticles;
     }
 }

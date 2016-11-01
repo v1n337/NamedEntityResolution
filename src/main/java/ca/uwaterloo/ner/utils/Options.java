@@ -28,6 +28,10 @@ public class Options
             required = true)
     private String xmlFilePath;
 
+    @Option(name = "-outputFilePath", usage = "Output File Path", metaVar = "OUTPUT_FILE_PATH",
+            required = true)
+    private String outputFilePath;
+
     public static void initializeInstance(String[] args)
         throws InvalidConfigurationError
     {

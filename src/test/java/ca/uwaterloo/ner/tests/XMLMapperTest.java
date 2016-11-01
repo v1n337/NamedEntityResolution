@@ -5,6 +5,7 @@ import ca.uwaterloo.ner.utils.XMLHelper;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 public class XMLMapperTest
@@ -17,6 +18,21 @@ public class XMLMapperTest
 
         List<Article> articles = XMLHelper.getObjects(filePath);
 
-        System.out.println(articles);
+//        System.out.println(articles);
+
+        Iterator iterator = articles.iterator();
+
+        while (iterator.hasNext())
+        {
+            try
+            {
+                Article article = (Article) iterator.next();
+                System.out.println(article.getValue());
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 }
