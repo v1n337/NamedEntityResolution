@@ -6,7 +6,6 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class XMLHelper
 {
     public static List<Article> getObjects(String xmlFilePath)
-        throws IOException
+        throws Exception
     {
         List<Article> articles = null;
 
