@@ -1,17 +1,13 @@
 package ca.uwaterloo.ner.tests;
 
+import ca.uwaterloo.ner.bean.Annotation;
 import ca.uwaterloo.ner.utils.IllinoisNERHelper;
-import edu.illinois.cs.cogcomp.annotation.TextAnnotationBuilder;
 import edu.illinois.cs.cogcomp.core.datastructures.ViewNames;
-import edu.illinois.cs.cogcomp.core.datastructures.textannotation.TextAnnotation;
-import edu.illinois.cs.cogcomp.core.utilities.configuration.ResourceManager;
 import edu.illinois.cs.cogcomp.ner.NERAnnotator;
-import edu.illinois.cs.cogcomp.nlp.tokenizer.IllinoisTokenizer;
-import edu.illinois.cs.cogcomp.nlp.utility.TokenizerTextAnnotationBuilder;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Properties;
+import java.util.List;
 
 public class NERAnnotatorTest
 {
@@ -27,6 +23,8 @@ public class NERAnnotatorTest
         NERAnnotator nerAnnotator = new NERAnnotator(ViewNames.NER_CONLL);
         nerAnnotator.doInitialize();
 
-        IllinoisNERHelper.tagDocument(text, corpus, textId, nerAnnotator);
+        List<Annotation> annotations = IllinoisNERHelper.tagDocument(text, corpus, textId, nerAnnotator);
+        System.out.println(annotations);
+        assert annotations != null;
     }
 }

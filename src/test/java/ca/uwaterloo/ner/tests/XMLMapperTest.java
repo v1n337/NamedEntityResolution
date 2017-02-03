@@ -4,7 +4,6 @@ import ca.uwaterloo.ner.bean.Article;
 import ca.uwaterloo.ner.utils.XMLHelper;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class XMLMapperTest
 {
     @Test
     public void testXmlMapper()
-        throws IOException
+        throws Exception
     {
         String filePath = "/home/v2john/Documents/Veriday/11-articles-canaccord-REJECT.xml";
 
